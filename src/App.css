@@ -2,19 +2,34 @@
   text-align: center;
 }
 
+input{
+  width: 100%;
+  transition: 0.2s;
+  border: 1px solid rgba(0,0,0,.05);
+  border-radius: 4px;
+  outline: none;
+  padding:0 10px ;
+}
+
+input:focus{
+  box-shadow:0 .125rem .25rem rgba(0,0,0,.075) !important;
+}
+
 table{
-  margin:0 10vw;
+  background-color: white;
+  margin:4vh 4vw;
 }
 th,td{
-  padding:2px 30px;
+  min-width:10vw;
+  padding:6px 30px;
 }
 
 tr{
-  transition:0.5s;
+  transition:0.2s;
   cursor: pointer;
 }
 
-tr:nth-child(n+1):hover{
-  box-shadow:0 .125rem .25rem rgba(0,0,0,.075)!important
+tbody tr:hover{
+  box-shadow:0 0 .4rem rgba(0,0,0,.075) !important;
 }
 
