@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import {
     useTable,
     useSortBy,
-    useFilters,
     useGlobalFilter,
 } from 'react-table';
 
@@ -10,7 +9,7 @@ import GlobalFilter from './GlobalFilter';
 
 export default function Table({ columns, data }) {
     
-    // Add filter types
+    // Add all filter types here
     const filterTypes = useMemo(() => ({
         text: (rows, id, filterValue) => {
             return rows.filter(row => {
@@ -24,6 +23,7 @@ export default function Table({ columns, data }) {
         }
     }), []);
 
+    // Pass useSortBy after filters
     const {
         getTableProps,
         getTableBodyProps,
@@ -40,7 +40,7 @@ export default function Table({ columns, data }) {
             data,
             filterTypes
         },
-        useFilters, useGlobalFilter, useSortBy);
+        useGlobalFilter, useSortBy);
 
     return (
         <table {...getTableProps()}>
@@ -72,7 +72,7 @@ export default function Table({ columns, data }) {
                     </tr>
                 ))}
 
-                {/* Global Filter Input */}
+                {/* Global Filter Input Box */}
                 <tr>
                     <td
                         colSpan={visibleColumns.length}
