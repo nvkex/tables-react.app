@@ -1,25 +1,85 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useMemo} from 'react';
+import { useTable } from 'react-table';
+import axios from 'axios';
 import './App.css';
 
+
+function Table({ columns, data }) {
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow
+   } = useTable({columns, data});
+
+   return(
+     <table {...getTableProps()}>
+       <thead className="shadow-sm">
+         {headerGroups.map(headerGroup => (
+           <tr {...headerGroup.getHeaderGroupProps()}>
+             {headerGroup.headers.map(column => (
+              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+            ))}
+           </tr>
+         ))}
+       </thead>
+       <tbody {...getTableBodyProps()}>
+          {rows.map((row,i) => {
+            prepareRow(row);
+            return(
+              <tr {...row.getRowProps()}>
+                {row.cells.map(cell => {
+                  return <td {...cell.getCellProps()}>
+                    {cell.render('Cell')}
+                  </td>
+                })}
+              </tr>
+            )
+          })}
+       </tbody>
+
+     </table>
+
+   )
+}
+
 function App() {
+
+  const URL = 'https://jsonplaceholder.typicode.com/posts';
+  var [data, setData] = useState([]);
+
+  // Fetch table content
+  axios.get(URL)
+    .then(res => {
+      setData(res.data.slice(0,20));
+    })
+    .catch(err => console.log(err));
+  
+
+
+  const columns = useMemo(() =>[
+    {
+      Header: "User ID",
+      accessor: "userId"
+    },
+    {
+      Header: "ID",
+      accessor: "id"
+    },
+    {
+      Header: "Title",
+      accessor: "title"
+    },
+    {
+      Header: "Content",
+      accessor: "body"
+    }
+  ], []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Table columns={columns} data={data}></Table>
   );
 }
 
