@@ -6,7 +6,7 @@ export default function GlobalFilter({globalFilter, setGlobalFilter }) {
 
     const [value, setValue] = useState(globalFilter);
 
-    // This handler filters on every input change
+    // Prevents any side effects on filter
     const onInputChange = useAsyncDebounce(value => {
       setGlobalFilter(value || undefined)
     }, 200);
