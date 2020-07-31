@@ -11,7 +11,7 @@ function App() {
   var [data, setData] = useState([]);
 
   // Fetch table content
-  // Update state when dataset empty 
+  // Update state only when dataset empty 
   if (data.length === 0)
     axios.get(URL)
       .then(res => {
@@ -20,8 +20,8 @@ function App() {
       .catch(err => console.log(err));
 
 
-  // Define table headers
-  // Must be memoized
+  // Define table headers.
+  // Must be memoized.
   const columns = useMemo(() => [
     {
       Header: "User ID",
@@ -43,7 +43,8 @@ function App() {
 
   return (
     <div>
-
+      
+      {/* Display loading text while the data is being fetched */}
       {
         data.length === 0 ?
           <h1 className="display-3 text-muted text-center">Loading...</h1> :

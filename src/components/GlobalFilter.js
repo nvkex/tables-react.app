@@ -5,6 +5,8 @@ import { useAsyncDebounce } from 'react-table';
 export default function GlobalFilter({globalFilter, setGlobalFilter }) {
 
     const [value, setValue] = useState(globalFilter);
+
+    // This handler filters on every input change
     const onInputChange = useAsyncDebounce(value => {
       setGlobalFilter(value || undefined)
     }, 200);

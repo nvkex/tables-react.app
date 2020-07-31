@@ -5,6 +5,7 @@ import {
     useGlobalFilter,
 } from 'react-table';
 
+// Filters
 import GlobalFilter from './GlobalFilter';
 
 export default function Table({ columns, data }) {
@@ -23,7 +24,6 @@ export default function Table({ columns, data }) {
         }
     }), []);
 
-    // Pass useSortBy after filters
     const {
         getTableProps,
         getTableBodyProps,
@@ -40,10 +40,12 @@ export default function Table({ columns, data }) {
             data,
             filterTypes
         },
-        useGlobalFilter, useSortBy);
+        useGlobalFilter, useSortBy);    // Pass useSortBy after filters
 
     return (
         <table {...getTableProps()}>
+
+            {/* Table Headers */}
             <thead className="shadow-sm">
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
@@ -87,6 +89,7 @@ export default function Table({ columns, data }) {
 
             </thead>
 
+            {/* Table body */}
             <tbody {...getTableBodyProps()}>
                 {rows.map((row, i) => {
                     prepareRow(row);
