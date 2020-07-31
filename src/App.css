@@ -38,3 +38,10 @@ tbody tr:hover{
   box-shadow:0 0 .4rem rgba(0,0,0,.075) !important;
 }
 
+@media(max-width:550px){
+  table{
+    font-size: small;
+    
+  }
+
+}
