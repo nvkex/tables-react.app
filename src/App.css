@@ -16,9 +16,13 @@ input:focus{
 }
 
 table{
+  width: 80vw;
   box-shadow:0 .125rem .25rem rgba(0,0,0,.075);
   background-color: white;
-  margin:4vh 4vw;
+  margin:0 auto;
+  margin-top: 4vh;
+  margin-bottom:4vh;
+  
 }
 th,td{
   min-width:10vw;
