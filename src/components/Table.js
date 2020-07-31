@@ -55,7 +55,8 @@ export default function Table({ columns, data }) {
                                 {/* Table heading */}
                                 {column.render('Header')}
 
-                                {/* Icons representing sort order*/}
+                                {/* Icons representing sort order */}
+                                {/* Clicking on these will sort the rows in ascending/descending order */}
                                 <span>
                                     {column.isSortedDesc ?
                                         <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" className="bi bi-arrow-up-short text-secondary mb-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
